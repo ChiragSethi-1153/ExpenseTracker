@@ -3,21 +3,15 @@ import axios from "axios";
 
 
 //action
-export const signup = createAsyncThunk('fetchProducts', async () => {
-    let response = await axios.post('http://localhost:8000/signup');
+export const signup = createAsyncThunk('signup', async (inputvalue) => {
+    let response = await axios.post('http://localhost:8000/signup', inputvalue);
     response = response.data
     // console.log(response);
     return response;
 })
 
-//action add
-export const login = createAsyncThunk('addProducts', async () =>{
-    let response = await axios.post('http://localhost:8000/login');
-    return response
-})
 
-
-const userSlice = createSlice ({
+const userSlice = createSlice ({ 
     name: 'user',
     initialState: {
         isLoading: false,
@@ -30,13 +24,14 @@ const userSlice = createSlice ({
         })
         builder.addCase(signup.fulfilled, (state, action) => {
             state.isLoading=false
-            state.data = []
-
         })
         builder.addCase(signup.rejected, (state, action) => {
             console.log("Error", action.payload);
             state.isError = true
         })
+
+        
+
     }
 })
 

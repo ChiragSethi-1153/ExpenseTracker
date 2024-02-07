@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './Navbar'
 import { Button } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import './Home.css'
 import AddModule from './AddModule'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import ExpenseList from './ExpenseList';
+import { expenses } from '../../Redux/Slice/expenseList';
 
 const Home = () => {
+  const dispatch = useDispatch();
   
   const [showAdd, setShowAdd] = useState(false)
 
+  const state = useSelector((state) => state.expenseList.data)
+  console.log(state,'hjvugy')
+
+  useEffect(()=> {
+    dispatch(expenses())
+  }, [])
+ console.log(state)
   const handleCategory = () => {
     document.getElementById("myDropdown").classList.toggle("show");
   }
@@ -70,15 +81,9 @@ const Home = () => {
       </div>
     </div>
     <div>
-      <table>
-        <thead>
-          {
-            
-          }
-        </thead>
-      </table>
-    </div>
-    {showAdd && <AddModule hide={handleAdd} />}
+      <ExpenseList />
+      </div>
+          {showAdd && <AddModule hide={handleAdd} />}
     </div>
   )
 }

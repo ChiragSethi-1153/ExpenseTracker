@@ -32,22 +32,23 @@ const UserSignup = () => {
     }
   };
 
-  // function handleEmail(event) {
-  //   let inValue = event.target.value;
-  //   setInputValue.email(inValue);
+  function handleEmail(event) {
+    let inValue = event.target.value;
+    setInputValue({...inputValue, email: inValue})
 
-  //   let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
-  //   if (!emailRegex.test(inValue)) {
-  //     setEmailErrorMsg("invalid email.");
-  //   } else {
-  //     setEmailErrorMsg("");
-  //   }
-  // }
+    let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+    if (!emailRegex.test(inValue)) {
+      setEmailErrorMsg("invalid email.");
+    } else {
+      setEmailErrorMsg("");
+    }
+  }
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signup());
+    dispatch(signup(inputValue));
+    navigate('/login')
     }
 
 
@@ -92,7 +93,10 @@ const UserSignup = () => {
               name="email"
               value={inputValue.email}
               placeholder="Enter Your Email"
-              onChange={(e) => setInputValue({...inputValue, email: e.target.value})}
+              onChange={(e) => {
+                handleEmail(e)
+                
+              }}
               required
             />
             <p style={{ color: "red" }}> {emailErrorMsg}</p>

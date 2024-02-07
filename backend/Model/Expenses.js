@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const expenseSchema = new mongoose.Schema({
     
+    selection: {
+        type: Number,
+        required: true
+    },
     name: {
         type: String, 
         required: true
@@ -17,14 +21,23 @@ const expenseSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    userId: { 
+        type: String,
+        // required: true
+    },
+    netBalance: {
+        type: String,
+        // required: true
     }
-    // user: {
-    //     type: String,
-    //     required: true
-    // },
     
     
 });
+
 
 const Expenses = mongoose.model('Expense', expenseSchema);
 

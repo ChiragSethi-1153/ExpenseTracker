@@ -1,20 +1,23 @@
 const { expenseService } = require('../services');
 
 
-const Expense = async (req, res) => {
+
+
+
+const expense = async (req, res) => {
     try{
-        const response = await expenseService.Expense(req.body) 
+        const response = await expenseService.expense(req) 
         return res.status(201).json(response)
     }
     catch(err){
         console.log(err)
         res.status(500).send(err);
     }
-}
+} 
 
-const Expenses = async (req, res) => {
+const expensess = async (req, res) => {
     try{
-        const response = await expenseService.Expenses();
+        const response = await expenseService.expensess(req);
         return res.status(201).json(response)
     }catch(err){
         console.log(err)
@@ -23,8 +26,20 @@ const Expenses = async (req, res) => {
 }
 
 
+// const netBalance = async (req, res) => {
+//     try{
+//         const response = await expenseService.Balance(req.body);
+//         return res.status(201).json(response)
+//     }catch(err){
+//         console.log(err)
+//         res.status(500).send(err)
+//     }
+// }
+
+
 
 module.exports = {
-    Expense,
-    Expenses
+    expense,
+    expensess,
+    // netBalance
 }

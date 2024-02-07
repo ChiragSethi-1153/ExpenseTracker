@@ -1,0 +1,86 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90.385vh;
+}
+
+.Login-form-box {
+    background-color: #F2F2F2;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px 2px #616161;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35.903vw;
+    height: 45.692vh;
+}
+
+.login-text-div {
+    width: 28.542vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3vh;
+}
+
+.login-text {
+    color:  var(--green, #56B280);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Roboto";
+    font-size: 1.389vw;
+    font-style: normal;
+    font-weight: 550;
+    line-height: 3.282vh;
+    /* 128% */
+    letter-spacing: -0.063vw;
+}
+.signup-btn {
+    border: none;
+    color:  var(--green, #56B280);
+    background: none;
+    outline: none !important;
+    cursor: pointer;
+}
+
+.login-form>input {
+    padding: 0.897vh 1.181vw;
+    border: 1px solid;
+    border-color: #898989;
+    border-radius: none;
+    width: 30.903vw;
+    height: 5.128vh;
+    outline: none !important;
+}
+
+.login-form>input:active {
+    border: 1px solid;
+    border-color: #898989;
+    border-radius: none;
+}
+
+.login-form>input::placeholder {
+    color: #616161;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25.6px;
+    /* 182.857% */
+}
+
+.login-btn.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    display: inline-flex;
+    padding: 8px 44px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 4px;
+    color: #fff;
+    background: var(--green, #56B280);
+    outline: none !important;
+}
+
+.login-btn.css-sghohy-MuiButtonBase-root-MuiButton-root:hover {
+    background: var(--green, #56B280);
+}

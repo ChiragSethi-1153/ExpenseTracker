@@ -1,12 +1,12 @@
 const bcrypt = require('bcryptjs')
 const Users = require('../Model/User');
 require('dotenv').config()
-
+ 
 const signup = async (payload) => {
     const { name, email, password} = payload;
     console.log(payload)
     let existingUser
-    try {
+    try { 
         existingUser = await Users.findOne({ email: email });
         if (existingUser)  throw "User already exists! Login instead"
             // return res.status(400).json({ message: "User already exists! Login instead" });
@@ -14,14 +14,14 @@ const signup = async (payload) => {
     } catch (err) {
         console.log(err) 
     } 
-    
-
+     
+ 
     const hashedPassword = bcrypt.hashSync(password)
 
     const user = new Users({
         name,
-        email,
-        password: hashedPassword,
+        email, 
+        password: hashedPassword
     });
     try {
         user.save();
@@ -30,24 +30,28 @@ const signup = async (payload) => {
     catch (err) {
         console.log(err)
     }
-
+ 
     
 }
 
 const login = async (  req, res) => {
     const {email, password} = req.body;
+    console.log("sed....",req.body)
 
     let existingUser;
     // let token
     // const existingUser
     try{
        existingUser  = await Users.findOne({email: email})
+       console.log(existingUser)
        if(!existingUser) {
-        throw new Error("User not found. Signup Please!")
-    }
+            throw new Error("User not found. Signup Please!")
+        }
        
-        const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
+        const isPasswordCorrect =  await bcrypt.compare(password, existingUser.password);
+        console.log(isPasswordCorrect)
         if(!isPasswordCorrect) {
+            console.log("nkwek")
             throw new Error("Invalid Email / Password")
        }
         // token = jwt.sign({id: existingUser._id}, process.env.JWT_KEY, {

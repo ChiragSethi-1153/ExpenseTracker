@@ -15,11 +15,18 @@ const signup = async (req, res, next) => {
 const login = async (req, res, next) => {
 
     try{
+        console.log(req.body)
         const response = await userService.login(req, res);
-
+        console.log(response)
+        
+        if(response.message === 'Successfully Logged In'){
         return res.status(200).json({response})
+        }
+        else{
+            return res.status(400).json({response})
+        }
     } catch(err){
-        // console.log(err)
+        // console.log(err) 
        return res.status(500).json({error: err.message});
     }
     
