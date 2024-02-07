@@ -25,12 +25,13 @@ const signup = async (payload) => {
     });
     try {
         user.save();
+        return user
     }
     catch (err) {
         console.log(err)
     }
 
-    return user
+    
 }
 
 const login = async (  req, res) => {

@@ -2,10 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-
-
 const expenseSlice = createSlice ({
-    name: 'user',
+    name: 'expense',
     initialState: {
         isLoading: false,
         data: [],

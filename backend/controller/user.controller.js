@@ -25,17 +25,18 @@ const login = async (req, res, next) => {
     
 }
 
-// const getUser = async (req,res) => {
-//     try{
-//         const response = await userService.getUser();
-//         return res.status(200).json({response})
-//     }
-//     catch(err){
-//     return res.status(500).json({error: err.message})
-// }}
+const getUser = async (req,res) => {
+    try{
+        const response = await userService.getUser();
+        return res.status(200).json({response})
+    }
+    catch(err){
+    return res.status(500).json({error: err.message})
+}}
 
 
 module.exports =  {
     signup,
-    login
+    login,
+    getUser
 }

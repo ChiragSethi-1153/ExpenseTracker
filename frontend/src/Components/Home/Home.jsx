@@ -2,12 +2,37 @@ import React from 'react'
 import Navbar from './Navbar'
 import { Button } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import './Home.css'
+import AddModule from './AddModule'
+import { useState } from 'react'
 
 const Home = () => {
+  
+  const [showAdd, setShowAdd] = useState(false)
 
-  const handleCategory = (e) => {
-      e.preventDefault();
+  const handleCategory = () => {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
 
+
+  const showAddModal = () => {
+    setShowAdd(true)
+    
+  }
+  const handleAdd = () => {
+    setShowAdd(false)
   }
 
   return (
@@ -30,8 +55,18 @@ const Home = () => {
 
       <div style={{display: 'flex', justifyContent: 'space-around', alignItems: "center", gap: '5vw'}}>
         <Button variant='outlined' endIcon={< ArrowDropDownIcon/>}  >Type</Button>
-        <Button variant='outlined' endIcon={< ArrowDropDownIcon/>}  onClick={() => {handleCategory()}}>Category</Button>
-        <Button variant='contained' style={{backgroundColor: 'black', borderRadius: '20px'}} > + Add</Button>
+        <div className="dropdown">
+         <Button variant='outlined' endIcon={< ArrowDropDownIcon/>}  onClick={handleCategory}>Category</Button>
+         <div id="myDropdown" className="dropdown-content">
+          <a>csdsdc</a>
+         </div>
+        </div>
+      
+        <Button 
+        variant='contained' 
+        style={{backgroundColor: 'black', borderRadius: '20px'}}
+        onClick={() => showAddModal()}
+        className="edit-btn" > + Add</Button>
       </div>
     </div>
     <div>
@@ -43,6 +78,7 @@ const Home = () => {
         </thead>
       </table>
     </div>
+    {showAdd && <AddModule hide={handleAdd} />}
     </div>
   )
 }
